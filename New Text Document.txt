@@ -1,0 +1,94 @@
+
+import java.awt.*;
+import java.util.HashMap;
+import javax.swing.*;
+
+public class CityCodeApp {
+
+    private HashMap<String, String> cityMap = new HashMap<>();
+
+    public CityCodeApp() {
+        // Create frame
+        JFrame frame = new JFrame("City STD Code Manager");
+        frame.setSize(400, 300);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new FlowLayout());
+
+        // Components
+        JTextField cityField = new JTextField(15);
+        JTextField codeField = new JTextField(5);
+        JTextArea cityList = new JTextArea(10, 30);
+        cityList.setEditable(false);
+
+        JButton addButton = new JButton("Add");
+        JButton removeButton = new JButton("Remove");
+        JButton searchButton = new JButton("Search");
+
+        // Add components to frame
+        frame.add(new JLabel("City Name:"));
+        frame.add(cityField);
+        frame.add(new JLabel("Code:"));
+        frame.add(codeField);
+        frame.add(addButton);
+        frame.add(removeButton);
+        frame.add(searchButton);
+        frame.add(new JScrollPane(cityList));
+
+        // Add button action
+        addButton.addActionListener(e -> {
+            String city = cityField.getText().trim();
+            String code = codeField.getText().trim();
+            if (!city.isEmpty() && !code.isEmpty()) {
+                if (!cityMap.containsKey(city)) {
+                    cityMap.put(city, code);
+                    cityList.append(city + " " + code + "\n");
+                } else {
+                    JOptionPane.showMessageDialog(frame, "City already exists!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(frame, "Please enter both city and code!");
+            }
+            cityField.setText("");
+            codeField.setText("");
+        });
+
+        // Remove button action
+        removeButton.addActionListener(e -> {
+            String city = cityField.getText().trim();
+            if (!city.isEmpty()) {
+                if (cityMap.containsKey(city)) {
+                    cityMap.remove(city);
+                    cityList.setText("");
+                    cityMap.forEach((key, value) -> cityList.append(key + " " + value + "\n"));
+                } else {
+                    JOptionPane.showMessageDialog(frame, "City not found!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(frame, "Please enter a city name to remove!");
+            }
+            cityField.setText("");
+        });
+
+        // Search button action
+        searchButton.addActionListener(e -> {
+            String city = cityField.getText().trim();
+            if (!city.isEmpty()) {
+                if (cityMap.containsKey(city)) {
+                    JOptionPane.showMessageDialog(frame, "STD Code for " + city + ": " + cityMap.get(city));
+                } else {
+                    JOptionPane.showMessageDialog(frame, "City not found!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(frame, "Please enter a city name to search!");
+            }
+            cityField.setText("");
+        });
+
+        // Display the frame
+        frame.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new CityCodeApp();
+    }
+}
