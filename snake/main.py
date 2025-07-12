@@ -8,7 +8,7 @@ get_random_position = lambda: [randrange(*RANGE), randrange(*RANGE)]
 snake = pg.rect.Rect([0, 0, TITLE_SIZE - 2, TITLE_SIZE - 2])
 snake.center = get_random_position()
 snake_dir = (0 ,0)
-time, time_step = 0, 110
+time, time_step = 0, 70
 
 length = 1
 
