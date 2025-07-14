@@ -1,5 +1,5 @@
-#🧠 Physics Simulations and Games in Python
-#This repository contains various Python-based projects demonstrating physics simulations, game logic, and data visualization using libraries like Pygame, Matplotlib, and Streamlit.
+    🧠 Physics Simulations and Games in Python
+    this repository contains various Python-based projects demonstrating physics simulations, game logic, and data visualization using libraries like Pygame, Matplotlib, and Streamlit.
 
 🏀 Physics Ball Simulation (Pygame_physics)
 A simple 2D physics simulation of balls using Pygame, simulating gravity, collision, and motion dynamics.
